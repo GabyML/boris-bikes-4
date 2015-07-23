@@ -29,6 +29,12 @@ describe DockingStation do
 		expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
 	end
 
+	#it 'can be reported broken' do
+	#	subject.report_broken
+	#	expect(subject).to be_broken
+	#end
+
+
 end
 
  #expected Exception with "Docking Station full"

@@ -17,12 +17,14 @@ class DockingStation #definition of DockingStation class
   end
 
 	def release_bike #definition of release_bike method
-		fail 'No bikes available' if empty? #Guard Condition (presence of bikes)
+		fail 'No bikes available' if empty?
+			#Guard Condition (presence of bikes)
 		@bikes.pop # All Ruby instance variables are initially nil by default
 	end
 
+
 	def dock (bike)
-		fail 'Docking Station full' if full?
+		fail 'Docking Station full' if full? || broken?
 		@bikes << bike
 	end
 
@@ -39,4 +41,7 @@ class DockingStation #definition of DockingStation class
 	end
 
 
+		
 end
+
+
