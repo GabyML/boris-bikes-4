@@ -11,7 +11,7 @@ class DockingStation #definition of DockingStation class
 	end
 
 	def dock (bike)
-		fail 'Docking station full' if @bikes.count >= 20
+		fail 'Docking Station full' if @bikes.count >= 20
 		@bikes << bike
 	end
 
