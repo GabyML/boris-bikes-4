@@ -3,29 +3,38 @@ require_relative 'Bike_Class'
 class DockingStation #definition of DockingStation class
 	attr_accessor :capacity
 
-	def initialize capacity
-	@capacity = capacity
-	end
-
 	DEFAULT_CAPACITY = 20
 
-	# attr_reader :capacity #this is no longer needed as attr_accesor has replaced this
+	def initialize (capacity=DEFAULT_CAPACITY)
+	bike = Bike.new
+	@bikes = []
+	@capacity = capacity
 
-  def initialize
-    @bikes = []
-    @capacity = DEFAULT_CAPACITY
-  end
-
-	def release_bike #definition of release_bike method
-		fail 'No bikes available' if empty?
-			#Guard Condition (presence of bikes)
-		@bikes.pop # All Ruby instance variables are initially nil by default
 	end
 
-
+	# attr_reader :capacity #this is no longer needed as attr_accesor has replaced this
 	def dock (bike)
-		fail 'Docking Station full' if full? || broken?
+		fail 'Docking Station full' if full?
 		@bikes << bike
+		#@working_bikes << bike unless bike.broken?
+	end
+
+	def release_bike #definition of release_bike method
+
+		# fail 'No working bikes available' if empty?
+			#Guard Condition (presence of bikes)
+		#fail 'This bike is broken!' if @bikes.last.broken? == true #This test is commented because with the second array will no longer be needed
+		
+		working_bikes = bikes.select { |bike|bike.working? }
+
+		fail "No working bikes available" if working_bikes.empty?
+		
+
+		bike = working_bikes.pop
+
+		bikes.delete bike
+		
+		bike
 	end
 
 	private

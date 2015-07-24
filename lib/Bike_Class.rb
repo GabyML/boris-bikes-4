@@ -1,14 +1,19 @@
 class Bike
 
+	def initialize
+		@broken = false
+	end
+
 	def report_broken
+		@broken = true
 	end
 
 	def working?
-		true unless subject == nil 
+		true unless broken? == true 
 	end
 
 	def broken?
-		true
+		@broken
 	end
 
 
